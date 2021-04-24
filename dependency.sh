@@ -1,4 +1,18 @@
 #!/usr/bin/env bash
+apk add cargo go zlib bzip2
+cargo install bgptools
+go get github.com/zhanhb/cidr-merger
+ln -sf  ~/.cargo/bin/bgptools /usr/local/bin/
+ln -sf  ~/go/bin/cidr-merger /usr/local/bin/
+
+# https://github.com/RIPE-NCC/bgpdump/wiki
+cd /tmp/
+git clone https://github.com/RIPE-NCC/bgpdump
+cd bgpdump
+sh ./bootstrap.sh
+make
+./bgpdump -T
+cp bgpdump /usr/local/bin/
 
 set -e
 
