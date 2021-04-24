@@ -14,6 +14,9 @@ make
 ./bgpdump -T
 cp bgpdump /usr/local/bin/
 
+# Fix alpine grep not support grep -P options
+apk add --no-cache --upgrade grep
+
 set -e
 
 cidr-merger --version || {
